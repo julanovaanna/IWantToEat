@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+    <h:form enctype="multipart/form-data">
+        <p:panel>
+            <div>
+                <div>
+                    <table>
+                                    <tr><td>
+                                        <h:outputLabel value="Название блюда"/>
+                                    </td></tr>
+                                    <tr><td>
+                                        <h:inputText label="Название блюда" value="#{dishCreation.name}"/>
+                                    </td></tr>
+                                    <tr><td>
+                                        <h:outputLabel value="Описание блюда (указать ингридиенты и их количество через ',' )"/>
+                                    </td></tr>
+                                    <tr><td>
+                                         <h:inputTextarea value="#{dishCreation.products}"/>
+                                    </td></tr>
+                                </table>
+
+                </div>
+                <div>
+                    <p:selectCheckboxMenu value="#{dishCreation.selectedCuisines}" label="Выберите кухню">
+                <f:selectItems value="#{dishCreation.mapCuisines}"/>
+            </p:selectCheckboxMenu>
+            <br/>
+            <p:inplace label="Загрузить фото" effect="slide" editor="true">
+            <p:fileUpload fileUploadListener="#{dishCreation.handleFileUpload}"
+                          image="no_foto.jpg"
+                          mode="advanced"
+                          update="dishImg"
+                          auto="true"
+                          sizeLimit="100000"
+                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+            </p:inplace>
+            <p:graphicImage id="dishImg" alt="фото" value="http://localhost:8080/IwantToEat-1.0-SNAPSHOT/ImageServlet"/>
+                </div>
+            </div>
+
+
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
