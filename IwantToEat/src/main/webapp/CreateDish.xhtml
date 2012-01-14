@@ -47,7 +47,7 @@
                           sizeLimit="100000"
                           allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
             </p:inplace>
-            <p:graphicImage id="dishImg" alt="фото" value="http://localhost:8080/IwantToEat-1.0-SNAPSHOT/ImageServlet"/>
+            <p:graphicImage id="dishImg" alt="фото" value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/ImageServlet"/>
                 </div>
             </div>
 
