@@ -17,7 +17,7 @@ import java.util.List;
 @Stateless
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 public class CuisineDAO {
-    @PersistenceContext(unitName = "sample")
+    @PersistenceContext(unitName = "sample ququ")
     EntityManager em;
 
     @TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
