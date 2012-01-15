@@ -38,151 +38,83 @@ import java.util.jar.Manifest;
 public class DishCreation {
     @EJB
     private ImageLocal ImgFile;
-    private String name;
-    private String msg;
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    private String img;
-
-    public UploadedFile getFile() {
-        return file;
-    }
-
-    public void setFile(UploadedFile file) {
-        this.file = file;
-    }
-
-    private UploadedFile file;
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    private Cuisine cuisine;
-    private String description;
-    private List<String> selectedCuisines;
-    private Map<String,String> mapCuisines;
-
-    @EJB
-    private CuisineDAO cuisineDAO;
-
-    public Map<String, String> getMapCuisines() {
-        return mapCuisines;
-    }
-
-    public void setMapCuisines(Map<String, String> mapCuisines) {
-        this.mapCuisines = mapCuisines;
-    }
+    private String dishName;
+    private String dishDescription;
+    private Cuisine selectedCuisine;
+    private List<Cuisine> cuisines;
+    private String cuisineName;
+    private String cuisineDescription;
 
     public DishCreation() {
-        selectedCuisines = new ArrayList<String>();
-        mapCuisines = new HashMap<String,String>();
-    }
+        cuisines = new ArrayList<Cuisine>();
 
-    private Cuisine createCuisine(String name, String description) {
-        Cuisine cuisine = new Cuisine();
-        cuisine.setName(name);
-        cuisine.setDescription(description);
-        return cuisine;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<String> getSelectedCuisines() {
-        return selectedCuisines;
-    }
-
-    public void setSelectedCuisines(List<String> selectedCuisines) {
-        this.selectedCuisines = selectedCuisines;
     }
 
     public void handleFileUpload(FileUploadEvent event) {
-        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
         this.ImgFile.setImgFile(event.getFile());
-        setImg("http://localhost:8080/IwantToEat-1.0-SNAPSHOT/ImageServlet");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    public Map<String,String> getCuisines() {
-        List<Cuisine> cuisines = cuisineDAO.getCuisines();
-        for (Cuisine cuisine:cuisines){
-            mapCuisines.put(cuisine.getName(),Integer.toString(cuisine.getId()));
-        }
-        return mapCuisines;
     }
 
-    public void setCuisines(Map<String, String> cuisines) {
-        this.mapCuisines = cuisines;
+    public ImageLocal getImgFile() {
+        return ImgFile;
     }
 
-    public String test(){
-        return "CreateDish";
-    }
-     public String test1(){
-         List<String> cuisineList = this.getSelectedCuisines();
-        for (String cuisine:cuisineList){
-           String s = cuisine;
-           String r = s;
-        }
-        return "index";
-    }
-    public void setName(String name) {
-        this.name = name;
+    public void setImgFile(ImageLocal imgFile) {
+        ImgFile = imgFile;
     }
 
-    public Cuisine getCuisine() {
-        return cuisine;
+    public String getDishName() {
+        return dishName;
     }
 
-    public void setCuisine(Cuisine cuisine) {
-        this.cuisine = cuisine;
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDishDescription() {
+        return dishDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDishDescription(String dishDescription) {
+        this.dishDescription = dishDescription;
     }
 
-    public int getDifficulty() {
-        return difficulty;
+    public Cuisine getSelectedCuisine() {
+        return selectedCuisine;
     }
 
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
+    public void setSelectedCuisine(Cuisine selectedCuisine) {
+        this.selectedCuisine = selectedCuisine;
     }
 
-    public String getProducts() {
-        return products;
+    public List<Cuisine> getCuisines() {
+        Cuisine c = new Cuisine();
+        c.setName("Японская");
+        c.setDescription("Суши, роллы");
+        cuisines.add(c);
+        Cuisine c1 = new Cuisine();
+        c1.setName("Армянская");
+        c1.setDescription("Мяяясо");
+        cuisines.add(c1);
+        return cuisines;
     }
 
-    public void setProducts(String products) {
-        this.products = products;
+    public void setCuisines(List<Cuisine> cuisines) {
+        this.cuisines = cuisines;
     }
 
-    public List<Disease> getGoodFor() {
-        return goodFor;
+    public String getCuisineName() {
+        return cuisineName;
     }
 
-    public void setGoodFor(List<Disease> goodFor) {
-        this.goodFor = goodFor;
+    public void setCuisineName(String cuisineName) {
+        this.cuisineName = cuisineName;
     }
 
-    int difficulty;
-    String products;
-    List<Disease> goodFor;
+    public String getCuisineDescription() {
+        return cuisineDescription;
+    }
+
+    public void setCuisineDescription(String cuisineDescription) {
+        this.cuisineDescription = cuisineDescription;
+    }
 }

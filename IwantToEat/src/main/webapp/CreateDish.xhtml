@@ -8,50 +8,69 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
 </h:head>
-
 <h:body>
-
     <h:form enctype="multipart/form-data">
         <p:panel>
-            <div>
-                <div>
-                    <table>
-                                    <tr><td>
-                                        <h:outputLabel value="Название блюда"/>
-                                    </td></tr>
-                                    <tr><td>
-                                        <h:inputText label="Название блюда" value="#{dishCreation.name}"/>
-                                    </td></tr>
-                                    <tr><td>
-                                        <h:outputLabel value="Описание блюда (указать ингридиенты и их количество через ',' )"/>
-                                    </td></tr>
-                                    <tr><td>
-                                         <h:inputTextarea value="#{dishCreation.products}"/>
-                                    </td></tr>
-                                </table>
-
-                </div>
-                <div>
-                    <p:selectCheckboxMenu value="#{dishCreation.selectedCuisines}" label="Выберите кухню">
-                <f:selectItems value="#{dishCreation.mapCuisines}"/>
-            </p:selectCheckboxMenu>
+            <table>
+                <tr>
+                    <td><h:outputLabel value="Название блюда"/></td>
+                    <td rowspan="3"><p:graphicImage width="100px" height="100px" id="dishImg" alt="фото"
+                                                    value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/ImageServlet"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><h:inputText label="Название блюда" value="#{dishCreation.dishName}" style="width: 300px"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Описание блюда (указать ингридиенты и их количество через ',' )"/></td>
+                </tr>
+                <tr>
+                    <td><h:inputTextarea value="#{dishCreation.dishDescription}" style="width: 300px"/></td>
+                    <td>
+                        <p:inplace label="Загрузить фото" effect="slide" editor="true">
+                            <p:fileUpload fileUploadListener="#{dishCreation.handleFileUpload}"
+                                          image="no_foto.jpg"
+                                          mode="advanced"
+                                          update="dishImg"
+                                          auto="true"
+                                          label="..."
+                                          showButtons="FALSE"
+                                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                        </p:inplace>
+                    </td>
+                </tr>
+            </table>
+            <p:selectOneMenu value="#{dishCreation.selectedCuisine}" width="150" height="100" effect="fade">
+                <f:selectItem itemLabel="Выбор кухни" itemValue="ничего не выбрано" />
+                <f:selectItems value="#{dishCreation.cuisines}" var="cuisine" itemLabel="#{cuisine.name}"
+                               itemValue="#{cuisine}"/>
+            </p:selectOneMenu>
             <br/>
-            <p:inplace label="Загрузить фото" effect="slide" editor="true">
-            <p:fileUpload fileUploadListener="#{dishCreation.handleFileUpload}"
-                          image="no_foto.jpg"
-                          mode="advanced"
-                          update="dishImg"
-                          auto="true"
-                          sizeLimit="100000"
-                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+            <p:inplace label="Добавьте кухню, если её не оказалось в списке" effect="slide" editor="true">
+                <table>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Название кухни"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:inputText value="#{dishCreation.cuisineName}" style="width: 300px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Описание кухни"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:inputTextarea value="#{dishCreation.cuisineDescription}" style="width: 300px"/>
+                        </td>
+                    </tr>
+                </table>
             </p:inplace>
-            <p:graphicImage id="dishImg" alt="фото" value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/ImageServlet"/>
-                </div>
-            </div>
-
-
         </p:panel>
     </h:form>
 </h:body>
