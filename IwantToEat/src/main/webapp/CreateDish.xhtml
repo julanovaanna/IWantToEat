@@ -41,13 +41,14 @@
                     </td>
                 </tr>
             </table>
-            <p:selectOneMenu value="#{dishCreation.selectedCuisine}" width="150" height="100" effect="fade">
-                <f:selectItem itemLabel="Выбор кухни" itemValue="ничего не выбрано" />
+            <p:selectOneMenu id="cui" value="#{dishCreation.selectedCuisine}" width="150" height="100" effect="fade">
+                <f:selectItem itemLabel="Выбор кухни" itemValue="ничего не выбрано"/>
                 <f:selectItems value="#{dishCreation.cuisines}" var="cuisine" itemLabel="#{cuisine.name}"
                                itemValue="#{cuisine}"/>
             </p:selectOneMenu>
             <br/>
             <p:inplace label="Добавьте кухню, если её не оказалось в списке" effect="slide" editor="true">
+                <p:ajax event="save" listener="#{dishCreation.handleSaveCuisine}" update="cui"/>
                 <table>
                     <tr>
                         <td>
@@ -67,6 +68,70 @@
                     <tr>
                         <td>
                             <h:inputTextarea value="#{dishCreation.cuisineDescription}" style="width: 300px"/>
+                        </td>
+                    </tr>
+                </table>
+            </p:inplace>
+            <!--******************************************vitamins****************************************************************-->
+            <p:selectManyMenu value="#{dishCreation.selectedVitamins}" id="vit" style="height:100px">
+                <f:selectItems value="#{dishCreation.vitamins}"
+                               var="vitamin" itemLabel="#{vitamin.name}"
+                               itemValue="#{vitamin}" />
+            </p:selectManyMenu>
+            <br/>
+            <p:inplace label="Пожалуйста, добавьте еще не существующие витамины в список" effect="slide" editor="true">
+                <p:ajax event="save" listener="#{dishCreation.handleSaveVitamin}" update="vit"/>
+                <table>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Название витамина"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:inputText value="#{dishCreation.vitaminName}" style="width: 300px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Описание витамина"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:inputTextarea value="#{dishCreation.vitaminDescription}" style="width: 300px"/>
+                        </td>
+                    </tr>
+                </table>
+            </p:inplace>
+            <!--******************************************diseases****************************************************************-->
+            <p:selectManyMenu value="#{dishCreation.selectedDiseases}" id="dis" style="height:100px">
+                <f:selectItems value="#{dishCreation.diseases}"
+                               var="disease" itemLabel="#{disease.name}"
+                               itemValue="#{disease}" />
+            </p:selectManyMenu>
+            <br/>
+            <p:inplace label="Пожалуйста, добавьте еще не описанные заболевания" effect="slide" editor="true">
+                <p:ajax event="save" listener="#{dishCreation.handleSaveDisease}" update="dis"/>
+                <table>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Название заболевания"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:inputText value="#{dishCreation.diseaseName}" style="width: 300px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Описание заболевания"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:inputTextarea value="#{dishCreation.diagnosis}" style="width: 300px"/>
                         </td>
                     </tr>
                 </table>
