@@ -10,21 +10,12 @@
 <h:head>
 
 </h:head>
-
 <h:body>
-
     <h:form>
-        <p:panel header="F.C. Barcelona" footer="Visca el Barca!">
-            <h:outputText value="Dish name is '#{indexBean.dishName}'"/>
-            <h:inputText label="Имя кухни" value="#{indexBean.cuisineName}"/>
-            <h:inputText label="Описание кухни" value="#{indexBean.cuisineDescription}"/>
-
-            <p:commandButton value="сохранить" action="#{indexBean.persistCuisine}"/>
-            <b>
-            </b>
-            <h:commandButton value="создать блюдо" action="CreateDish"/>
+        <p:panel>
+            <h:commandButton value="Создать блюдо" action="CreateDish"/>
+            <h:commandButton value="Чего бы мне поесть..." action="index"/>
         </p:panel>
-
     </h:form>
 </h:body>
 </html>

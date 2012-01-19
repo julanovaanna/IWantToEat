@@ -29,6 +29,7 @@ public class Disease implements Serializable {
     private Collection<Dish> dishes;
 
     private String diagnosis;
+    private String name;
 
     public Disease() {
     }
@@ -51,6 +52,14 @@ public class Disease implements Serializable {
 
     public String getDiagnosis() {
         return diagnosis;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setDiagnosis(String diagnosis) {
