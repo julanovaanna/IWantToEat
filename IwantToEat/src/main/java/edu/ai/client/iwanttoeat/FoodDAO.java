@@ -2,7 +2,10 @@ package edu.ai.client.iwanttoeat;
 
 import edu.ai.client.iwanttoeat.entity.Cuisine;
 import edu.ai.client.iwanttoeat.entity.Disease;
+import edu.ai.client.iwanttoeat.entity.Product;
 import edu.ai.client.iwanttoeat.entity.Vitamin;
+import org.apache.commons.io.filefilter.FalseFileFilter;
+import sun.font.TrueTypeFont;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
@@ -45,5 +48,9 @@ public class FoodDAO {
     public List<Vitamin> getVitamins(){
         List<Vitamin> Vitamins = (List<Vitamin>)em.createQuery("from Vitamin").getResultList();
         return Vitamins;
+    }
+    public boolean isProductExist(String productName){
+        Product product = (Product)em.createQuery("from Product p where upper(p.name)like upper(:prodName)").setParameter("prodName", productName).getSingleResult();
+        return product!=null;
     }
 }

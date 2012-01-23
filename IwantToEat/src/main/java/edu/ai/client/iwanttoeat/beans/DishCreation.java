@@ -9,6 +9,7 @@ import servlet.ImageLocal;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class DishCreation {
         disease.setDiagnosis(this.getDiagnosis());
         foodDAO.persistDisease(disease);
     }
-    public void submitDish(){
+    public void submitDish(ActionEvent event){
         Dish dish = new Dish();
         dish.setName(this.getDiseaseName());
         dish.setDescription(this.getDishDescription());
@@ -77,6 +78,16 @@ public class DishCreation {
     }
     public List<Product> getProductsFromStr(String productsStr){
      List<Product> products = new ArrayList<Product>();
+        String[] prodStrings = productsStr.split("(\\s*[А-Яа-я]+\\s*)+[0-9]*\\s*[А-Яа-я]*\\s*");
+        for (int i=0;i<prodStrings.length;i++){
+            Product product = new Product();
+            String prodName = (prodStrings[i].split("[^/0-9]+"))[0];
+            if (!foodDAO.isProductExist(prodName)){
+
+            }
+            product.setName((prodStrings[i].split("[^/0-9]+"))[0]);
+
+        }
         return products;
     }
     public List<Vitamin> getSelectedVitamins() {
