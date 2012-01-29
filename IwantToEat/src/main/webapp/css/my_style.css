@@ -1,0 +1,248 @@
+/* === reset === */
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dd, dt, a,
+table, caption, tr, td, th, i, b, em, ins, dfn, del, kbd, var, cite, code, samp,
+form, fieldset, legend, embed, object, textarea, select, input, button {
+    font: normal 100%/1 Arial, Verdana, sans-serif;
+    vertical-align: baseline;
+
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    text-indent: 2em;
+}
+
+table {
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    empty-cells: show;
+}
+
+th, td {
+    text-align: left;
+    vertical-align: top;
+}
+
+ul {
+    list-style-type: none;
+}
+
+em, i {
+    font-style: italic;
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+/* === abstract === */
+
+.clear {
+    overflow: hidden;
+    clear: both;
+}
+
+.none {
+    display: none;
+    visibility: hidden;
+}
+
+.nobr {
+    white-space: nowrap;
+}
+
+.noheight {
+    height: 0;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.center {
+    text-align: center;
+}
+
+/* === links === */
+
+:link, :visited {
+    color: #069;
+}
+
+.a_gray:link, .a_gray:visited {
+    color: #999;
+}
+
+:link:hover, :visited:hover,
+:link:focus, :visited:focus,
+:link:active, :visited:active,
+.a_gray:link:hover, .a_gray:visited:hover,
+.a_gray:link:focus, .a_gray:visited:focus,
+.a_gray:link:active, .a_gray:visited:active {
+    text-decoration: none;
+}
+body{
+    background-color: #ffff99;
+    height: auto !important;
+    height: 100%;
+    min-height: 100%;
+    position: relative;
+}
+.top{
+    background: url("../my_images/top.jpg")repeat-x;
+    height:95px;
+    position: relative;
+    z-index:2;
+}
+.center{
+    width: 850px;
+    margin-left: 60px;
+    margin-top: -3px;
+    min-height: 485px;
+}
+
+.left_col{
+  background-color: #ffcc66;
+    width: 250px;
+    float: left;
+    height: 470px;
+}
+.left_all{
+    float: left;
+    width: 282px;
+    height: 485px;
+}
+.top_left{
+    height: 470px;
+    width: 282px;
+}
+.right_grad{
+    background: url("../my_images/right_grad.png");
+    width: 16px;
+    height: 470px;
+    position: relative;
+    z-index: 1;
+    float: left;
+}
+.left_grad{
+    background: url("../my_images/left_grad.png");
+    width: 16px;
+    height: 470px;
+    position: relative;
+    z-index: 1;
+    float: left;
+}
+.bottom_grad{
+    background: url("../my_images/bottom_grad.png");
+    width: 282;
+    height: 15px;
+}
+.content{
+    width: 600px;
+    margin-left: 250px;
+}
+.bottom{
+
+    background-color: #cc9966;
+    height: 59px;
+
+
+}
+.povar{
+    background: url("../my_images/povar.png");
+    width: 73px;
+    height: 85px;
+    position: relative;
+    top: 2px;
+    left: 150px;
+    float: left;
+}
+.name{
+    height:95px;
+    position: relative;
+    left: 312px;
+    top: 15px;
+    width: 400px;
+}
+
+.caption{
+    background: url("../my_images/caption.png");
+    width: 472px;
+    height: 37px;
+
+}
+.slogan{
+    background: url("../my_images/slogan.png");
+    width: 330px;
+    height: 19px;
+    position: relative;
+    left: 195px;
+
+}
+.polza{
+    background: url("../my_images/polza.png");
+    width: 214px;
+    height: 60px;
+    position: relative;
+    top: 3px;
+    left: 18px;
+}
+.glavnaya{
+    background: url("../my_images/glavnaya.png");
+    width: 128px;
+    height: 24px;
+    position: relative;
+    top: 20px;
+    left: 19px;
+}
+
+.svarit_kashu{
+    background: url("../my_images/svarit_kashu.png");
+    width: 219px;
+    height: 27px;
+    position: relative;
+    top: 16px;
+    left: 18px;
+}
+.sozdat_bludo{
+    background: url("../my_images/sozdat_bludo.png");
+    width: 211px;
+    height: 27px;
+    position: relative;
+    top: 16px;
+    left: 19px;
+}
+.authors{
+    background: url("../my_images/authors.png");
+    width: 174px;
+    height: 27px;
+    position: relative;
+    top: 16px;
+    left: 19px;
+}
+
+.cover{
+    width: 250px;
+    height: 60px;
+
+}
+.cover:hover{
+    background: url("../my_images/cover.png");
+}
+.cover:active{
+    margin: 5px 0px 0px 5px;
+    background: transparent;
+}

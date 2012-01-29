@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Cooking website</title>
+    <meta http-equiv="content-type" content="text/xhtml; charset=UTF-8"/>
+    <link href="#{application.contextPath}/css/style.css" rel="stylesheet" type="text/css"/>
+    <meta name="description" content="Cooking website"/>
+    <meta name="keywords" content="cooking, food"/>
+</h:head>
+<h:body>
+<table width="100%" style="height:100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="center" valign="top" style="background-image: url(#{application.contextPath}/images/base-bg.jpg)"  class="bgx">
+            <table width="750" style="height:100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td height="1" style="background-image: url(#{application.contextPath}/images/menu-bg.gif)"><div style="position:absolute; top:27px; margin-left:411px;"> <img src="#{application.contextPath}/images/menu-p.gif" alt=""/> </div>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="1"><img src="#{application.contextPath}/images/menu-left.gif" alt="" width="10" height="40"/></td>
+                                <td align="center"><table border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td width="1"><img src="#{application.contextPath}/images/menu-bullet.gif" alt="" width="5" height="40"/></td>
+                                        <td class="menu"><a href="#" class="menu_lnk">Главная</a></td>
+                                    </tr>
+                                </table></td>
+                                <td width="1"><img src="#{application.contextPath}/images/menu-sep.gif" alt="" width="2" height="40"/></td>
+                                <td align="center"><table border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td width="1"><img src="#{application.contextPath}/images/menu-bullet.gif" alt="" width="5" height="40"/></td>
+                                        <td class="menu"><a href="#{application.contextPath}/CreateDish.xhtml" class="menu_lnk">Хочу есть!</a></td>
+                                    </tr>
+                                </table></td>
+                                <td width="1"><img src="#{application.contextPath}/images/menu-sep.gif" alt="" width="2" height="40"/></td>
+                                <td align="center"><table border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td width="1"><img src="#{application.contextPath}/images/menu-bullet.gif" alt="" width="5" height="40"/></td>
+                                        <td class="menu"><a href="#" class="menu_lnk">Создать блюдо</a></td>
+                                    </tr>
+                                </table></td>
+                                <td width="1"><img src="#{application.contextPath}/images/menu-sep.gif" alt="" width="2" height="40"/></td>
+                                <td align="center"><table border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td width="1"><img src="#{application.contextPath}/images/menu-bullet.gif" alt="" width="5" height="40"/></td>
+                                        <td class="menu"><a href="#" class="menu_lnk">О пользе продуктов</a></td>
+                                    </tr>
+                                </table></td>
+                                <td width="1"><img src="#{application.contextPath}/images/menu-sep.gif" alt="" width="2" height="40"/></td>
+                                <td align="center"><table border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td width="1"><img src="#{application.contextPath}/images/menu-bullet.gif" alt="" width="5" height="40"/></td>
+                                        <td class="menu"><a href="#" class="menu_lnk">Об авторах</a></td>
+                                    </tr>
+                                </table></td>
+                                <td width="1"><img src="#{application.contextPath}/images/menu-sep.gif" alt="" width="2" height="40"/></td>
+                                <td align="center"><table border="0" cellspacing="0" cellpadding="0">
+
+                                </table></td>
+                                <td width="1"><img src="#{application.contextPath}/images/menu-right.gif" alt="" width="10" height="40"/></td>
+                            </tr>
+                        </table></td>
+                </tr>
+                <tr>
+                    <td height="1" valign="top" style="background-image: url(#{application.contextPath}/images/p1.jpg)"  class="norepeat"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="1"><img src="#{application.contextPath}/images/spacer.gif" alt="" width="1" height="129"/></td>
+                            <td width="1" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="1"><img src="#{application.contextPath}/images/spacer.gif" alt="" width="92" height="33"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="center"><img src="#{application.contextPath}/images/logo.gif" alt="" width="62" height="63"/></td>
+                                </tr>
+                            </table></td>
+                            <td class="c_name">Чего бы поесть...</td>
+                            <td width="1"><img src="#{application.contextPath}/images/spacer.gif" alt="" width="341" height="129"/></td>
+                            <td width="1"><img src="#{application.contextPath}/images/spacer.gif" alt="" width="30" height="1"/></td>
+                        </tr>
+                    </table></td>
+                </tr>
+                <tr>
+                    <td height="100%" valign="top"><table width="100%" style="height:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td valign="top"><table width="100%" style="height:100%" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td height="1"><img src="#{application.contextPath}/images/c-top.jpg" alt="" width="508" height="14"/></td>
+                                </tr>
+                                <tr>
+                                    <td height="100%" bgcolor="#cee2c7" class="body_txt">
+                                        <div id="content">
+                                            <ui:insert name="page_content">Page Content</ui:insert>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table></td>
+                            <td width="1" height="100%" valign="top"><table width="100%" style="height:100%" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td width="1" height="1" valign="top"><img src="#{application.contextPath}/images/p2.jpg" alt="" width="242" height="211"/></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="#{application.contextPath}/images/r1.jpg" alt="" width="242" height="10"/></td>
+                                </tr>
+                                <tr>
+                                    <td height="100%" valign="top" style="background-image: url(#{application.contextPath}/images/r-bg.gif)" class="bgy"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td class="r-pic"><img src="#{application.contextPath}/images/r-pic1.gif" alt="" width="98" height="101" class="right-pic"/></td>
+                                            <td class="r-text"></td>
+                                        </tr>
+                                    </table></td>
+                                </tr>
+                                <tr>
+                                    <td height="1"><img src="#{application.contextPath}/images/spacer.gif" alt="" width="1" height="1"/></td>
+                                </tr>
+                            </table></td>
+                        </tr>
+                    </table></td>
+                </tr>
+                <tr>
+                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td height="100%" valign="top"><table width="100%" style="height:100%" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td height="1"><img src="#{application.contextPath}/images/c-bottom.gif" alt="" width="508" height="14"/></td>
+                                </tr>
+                                <tr>
+                                    <td height="100%" class="bottom_menu"><a href="#" class="bottom_lnk">Главная</a> | <a href="#" class="bottom_lnk">Хочу есть!</a> | <a href="#" class="bottom_lnk">Создать блюдо</a> | <a href="#" class="bottom_lnk">О пользе продуктов</a> | <a href="#" class="bottom_lnk">Об авторах</a></td>
+                                </tr>
+                            </table></td>
+                            <td width="242" class="bottom_addr">Company Name<br/>
+                                Phone: 0110 1234567<br/>
+                                E-mail: info@companyname.net</td>
+                        </tr>
+                    </table></td>
+                </tr>
+            </table></td>
+    </tr>
+</table>
+<div style="position:absolute;left:-3072px;top:0"><a href="http://anvision.ru">Создание сайтов Екатеринбург</a><a href="http://ru.anvisionwebtemplates.com">Шаблоны сайтов</a><a href="http://pricetag.ru">Поиск товаров - справочник цен, каталог магазинов, прайс-листы</a><a href="http://ru.anvisionwebtemplates.com/cooking-templates.html">Бесплатные шаблоны дизайна кулинарных сайтов</a></div>
+</h:body>
+</html>

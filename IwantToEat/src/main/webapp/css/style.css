@@ -1,0 +1,154 @@
+body {
+	margin:0;
+	padding:0;
+	background:#ffffff;
+}
+
+p,td { font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	margin-top: 0px;
+}
+
+a{
+	color: #377d29;
+	text-decoration: underline;
+}
+
+a:hover{
+	color: #377d29;
+	text-decoration: none;
+}
+
+a.hidden {
+	text-decoration: none;
+	color: #000000;
+	cursor:default;
+}
+
+form {
+     margin:0;
+     padding:0;
+}
+
+ul {
+	margin-left:20px;
+	margin-top:0px;
+	padding:1px;
+	list-style-type: square;
+	line-height: 16px;
+	}
+
+h1 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+	margin: 0px;
+	padding-left: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+}
+
+.bgy {
+	background-repeat: repeat-y;
+}
+
+.bottom_addr {
+	font-size: 10px;
+	color: #333333;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	text-align: right;
+	background-image: url(../images/r-bg.gif);
+	background-repeat: repeat-y;
+	vertical-align: middle;
+}
+
+.bgx {
+	background-repeat: repeat-x;
+}
+
+
+.norepeat {
+	background-repeat: no-repeat;
+}
+
+.r-text {
+	padding-top: 1px;
+	padding-right: 9px;
+	padding-bottom: 9px;
+	padding-left: 9px;
+	text-align: justify;
+	vertical-align: top;
+}
+.right-pic {
+	border: 1px solid #d3b6b2;
+}
+
+.r-pic {
+	padding-left: 10px;
+	padding-top: 1px;
+	padding-bottom: 9px;
+}
+
+
+.c_name {
+	font-size: 18px;
+	font-weight: normal;
+	text-transform: uppercase;
+	color: #166c0e;
+	background-repeat: no-repeat;
+	/*background-image: url(../images/cn_bg.jpg);*/
+}
+
+
+.bottom_menu {
+	color: #000000;
+	text-align: center;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	vertical-align: middle;
+}
+
+.bottom_lnk{
+	color: #000000;
+	text-decoration: none;
+}
+
+.bottom_lnk:hover {
+	color: #FF9900;
+	text-decoration: underline;
+}
+
+.menu {
+	color: #FFFFFF;
+	font-weight: bold;
+	padding-right: 10px;
+	padding-left: 10px;
+	white-space: nowrap;
+}
+.menu_lnk{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+.menu_lnk:hover {
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+
+.body_txt {
+	color: #000000;
+	text-align: justify;
+	vertical-align: top;
+	background-image: url(../images/center-bg.jpg);
+	background-repeat: no-repeat;
+	background-position: top;
+	padding-top: 3px;
+	padding-right: 14px;
+	padding-bottom: 10px;
+	padding-left: 14px;
+}

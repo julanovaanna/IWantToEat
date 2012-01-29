@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Хочу есть</title>
+    <meta http-equiv="content-type" content="text/xhtml; charset=UTF-8"/>
+    <link href="#{application.contextPath}/css/my_style.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+
+        <div class="top">
+            <div class="povar"></div>
+            <div class="name">
+                <div class="caption"></div>
+                <div class="slogan"></div>
+            </div>
+        </div>
+
+        <div class="center">
+            <div class="left_all">
+                <div class="top_left">
+                    <div class="left_grad"></div>
+                    <div class="left_col">
+                        <div class="cover">
+                            <div class="glavnaya"></div>
+                        </div>
+
+                        <div class="cover">
+                            <div class="svarit_kashu"></div>
+                        </div>
+
+                        <div class="cover">
+                            <div class="sozdat_bludo"></div>
+                        </div>
+
+                        <div class="cover">
+                            <div class="polza"></div>
+                        </div>
+
+                        <div class="cover">
+                            <div class="authors"></div>
+                        </div>
+                    </div>
+                    <div class="right_grad"></div>
+                </div>
+                <div class="bottom_grad"></div>
+            </div>
+            <div id="content" class="content">
+                    <ui:insert name="page_content">Контент</ui:insert>
+            </div>
+        </div>
+        <div class="bottom">
+
+        </div>
+</h:body>
+</html>
