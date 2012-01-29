@@ -1,30 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-
-<h:head>
-    <style type="text/css" title="captions" id="captions" >
-        {
-            font-family:Verdana;
-            font-size: x-large;
-            color: #00008b;
-        };
-
-    </style>
-</h:head>
-<h:body>
-
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="template/saved_template.xhtml">
+<ui:define name="page_content">
     <h:form enctype="multipart/form-data">
 
         <p:panel>
             <table>
                 <tr >
-                    <td rowspan = "2" width="500px"><h:inputText styleClass="captions" label="Название блюда" value="#{dishCreation.dishName}" /></td>
+                    <td rowspan = "2" ><p:inputText styleClass="ui-inputfield" label="Название блюда" value="#{dishCreation.dishName}" /></td>
                     <td width="500px">
                         <p:graphicImage width="100px" height="100px" id="dishImg" alt="фото"
                                         value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/ImageServlet"/>
@@ -34,53 +21,54 @@
                     <td>
                         <p:inplace label="Загрузить фото" effect="slide" editor="true">
                             <p:fileUpload fileUploadListener="#{dishCreation.handleFileUpload}"
-                                          image="no_foto.jpg"
+                                          label=""
                                           mode="advanced"
                                           update="dishImg"
                                           auto="true"
-                                          label="..."
+                                          title="..."
+                                          icon="star"
                                           showButtons="FALSE"
                                           allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
                         </p:inplace>
                     </td>
                 </tr>
                 <tr >
-                    <td ><h:outputLabel value="Описание приготовления блюда"/></td>
-                    <td><h:outputLabel value="Необходимые продукты (указать ингридиенты и их количество через ',' )"/></td>
+                    <td ><h:outputLabel styleClass="text" value="Описание приготовления блюда"/></td>
+                    <td><h:outputLabel  styleClass="text" value="Необходимые продукты (указать ингридиенты и их количество через ',' )"/></td>
                 </tr>
                 <tr>
-                    <td ><h:inputTextarea value="#{dishCreation.dishDescription}" /></td>
-                    <td><h:inputTextarea value="#{dishCreation.products}" /></td>
+                    <td ><p:inputTextarea autoResize="false" value="#{dishCreation.dishDescription}" /></td>
+                    <td><p:inputTextarea styleClass="textArea" value="#{dishCreation.products}" /></td>
                 </tr>
             </table>
 
             <p:selectOneMenu id="cui" value="#{dishCreation.selectedCuisine}" width="150" height="100" effect="fade">
-                <f:selectItem itemLabel="Выбор кухни" itemValue="ничего не выбрано"/>
-                <f:selectItems value="#{dishCreation.cuisines}" var="cuisine" itemLabel="#{cuisine.name}"
+                <f:selectItem  styleClass="text" itemLabel="Выбор кухни" itemValue="ничего не выбрано"/>
+                <f:selectItems  styleClass="text" value="#{dishCreation.cuisines}" var="cuisine" itemLabel="#{cuisine.name}"
                                itemValue="#{cuisine}"/>
             </p:selectOneMenu>
             <br/>
-            <p:inplace label="Добавьте кухню, если её не оказалось в списке" effect="slide" editor="true">
+            <p:inplace  styleClass="text" label="Добавьте кухню, если её не оказалось в списке" effect="slide" editor="true">
                 <p:ajax event="save" listener="#{dishCreation.handleSaveCuisine}" update="cui"/>
                 <table>
                     <tr>
                         <td>
-                            <h:outputLabel value="Название кухни"/>
+                            <h:outputLabel  styleClass="text" value="Название кухни"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:inputText value="#{dishCreation.cuisineName}" style="width: 300px"/>
+                            <p:inputText  styleClass="input" value="#{dishCreation.cuisineName}" style="width: 300px"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:outputLabel value="Описание кухни"/>
+                            <h:outputLabel  styleClass="text" value="Описание кухни"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:inputTextarea value="#{dishCreation.cuisineDescription}" style="width: 300px"/>
+                            <p:inputTextarea styleClass="textArea" value="#{dishCreation.cuisineDescription}" style="width: 300px"/>
                         </td>
                     </tr>
                 </table>
@@ -97,22 +85,22 @@
                 <table>
                     <tr>
                         <td>
-                            <h:outputLabel value="Название витамина"/>
+                            <h:outputLabel  styleClass="text" value="Название витамина"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:inputText value="#{dishCreation.vitaminName}" style="width: 300px"/>
+                            <p:inputText styleClass="input"  value="#{dishCreation.vitaminName}" style="width: 300px"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:outputLabel value="Описание витамина"/>
+                            <h:outputLabel styleClass="text"  value="Описание витамина"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:inputTextarea value="#{dishCreation.vitaminDescription}" style="width: 300px"/>
+                            <p:inputTextarea value="#{dishCreation.vitaminDescription}" style="width: 300px"/>
                         </td>
                     </tr>
                 </table>
@@ -129,30 +117,33 @@
                 <table>
                     <tr>
                         <td>
-                            <h:outputLabel value="Название заболевания"/>
+                            <h:outputLabel  styleClass="text" value="Название заболевания"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:inputText value="#{dishCreation.diseaseName}" style="width: 300px"/>
+                            <p:inputText  styleClass="input" value="#{dishCreation.diseaseName}" style="width: 300px"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:outputLabel value="Описание заболевания"/>
+                            <h:outputLabel styleClass="text"  value="Описание заболевания"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:inputTextarea value="#{dishCreation.diagnosis}" style="width: 300px"/>
+                            <p:inputTextarea value="#{dishCreation.diagnosis}" style="width: 300px"/>
                         </td>
                     </tr>
                 </table>
             </p:inplace>
             <br/>
-            <p:commandButton action="#{dishCreation.submitDish}" value="Сохранить блюдо"/>
+
         </p:panel>
 
     </h:form>
-</h:body>
-</html>
+    <h:form>
+        <p:commandButton actionListener="#{dishCreation.submitDish}" value="Сохранить блюдо" styleClass=".ui-button-text-only"/>
+    </h:form>
+</ui:define>
+</ui:composition>
