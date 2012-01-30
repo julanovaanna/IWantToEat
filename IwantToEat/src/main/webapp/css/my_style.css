@@ -102,7 +102,7 @@ body{
     position: relative;
 }
 .top{
-    background: url("../my_images/top.jpg")repeat-x;
+    background: url("../my_images/top.png")repeat-x;
     height:95px;
     position: relative;
     z-index:2;
