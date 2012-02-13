@@ -7,9 +7,40 @@
         xmlns:ui="http://java.sun.com/jsf/facelets"
         template="template/my_template.xhtml">
     <ui:define name="page_content">
-                <p:panel>
-                    <h:commandButton value="Создать блюдо" action="CreateDish"/>
-                    <h:commandButton value="Чего бы мне поесть..." action="index"/>
-                </p:panel>
+        <h:form enctype="multipart/form-data">
+
+            <p:imageSwitch effect="fade">
+                <ui:repeat value="#{imageSwitchBean.images}" var="image">
+                    <p:panel>
+                        <p:graphicImage value="#{image.src}"/>
+                        <h:outputLabel value="#{image.description}"/>
+                    </p:panel>
+                </ui:repeat>
+            </p:imageSwitch>
+
+            <p:dataTable id="basic" var="image" value="#{imageSwitchBean.images}">
+                <p:column id="modelHeader">
+                    <f:facet name="header">
+                        Описание
+                    </f:facet>
+                    <p:inputText value="#{image.description}" />
+                </p:column>
+
+
+            </p:dataTable>
+
+            <h:outputLabel value="Название продукта" />
+            <p:inputText value="#{initBean.productName}" id="prodName"/>
+            <p:commandButton value="Ajax Submit" update="prodName" id="ajax"
+                             actionListener="#{initBean.persistProduct}" />
+
+            <p:messages showDetail="true"/>
+
+            <p:fileUpload value="#{dishCreation.file}" mode="simple"/>
+
+            <p:commandButton value="Submit" ajax="false"
+                             actionListener="#{dishCreation.upload}"/>
+
+        </h:form>
     </ui:define>
 </ui:composition>

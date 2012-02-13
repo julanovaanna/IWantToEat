@@ -37,6 +37,10 @@ public class FoodDAO {
     public void persistDisease(Disease disease){
         em.persist(disease);
     }
+    @TransactionAttribute (value = TransactionAttributeType.REQUIRES_NEW)
+    public void persistProduct(Product product){
+        em.persist(product);
+    }
     public List<Cuisine> getCuisines(){
         List<Cuisine> cuisines = (List<Cuisine>)em.createQuery("from Cuisine").getResultList();
         return cuisines;
@@ -49,7 +53,13 @@ public class FoodDAO {
         List<Vitamin> Vitamins = (List<Vitamin>)em.createQuery("from Vitamin").getResultList();
         return Vitamins;
     }
+    public List<Product> getProducts(String beginning){
+        beginning = beginning+'%';
+        List<Product> products = (List<Product>)em.createQuery("from Product p where upper(p.name) like upper(:prodName)").setParameter("prodName",beginning).getResultList();
+        return products;
+    }
     public boolean isProductExist(String productName){
+
         Product product = (Product)em.createQuery("from Product p where upper(p.name)like upper(:prodName)").setParameter("prodName", productName).getSingleResult();
         return product!=null;
     }

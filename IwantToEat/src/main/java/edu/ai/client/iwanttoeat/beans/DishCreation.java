@@ -42,6 +42,9 @@ public class DishCreation {
     private String diseaseName;
     private String diagnosis;
     private String products;
+    private String selectedMeasure;
+    private List<String> measureList;
+    private String product;
 
     public DishCreation() {
         cuisines = new ArrayList<Cuisine>();
@@ -49,8 +52,27 @@ public class DishCreation {
         selectedVitamins = new ArrayList<Vitamin>();
         diseases = new ArrayList<Disease>();
         vitamins = new ArrayList<Vitamin>();
+        measureList = new ArrayList<String>();
+        this.initMeasureList();
 
     }
+    public List<String> complete(String query) {
+        List<String> result = new ArrayList<String>();
+        List<Product> productList = foodDAO.getProducts(query);
+        for (Product prod: productList){
+            result.add(prod.getName());
+        }
+        return result;
+    }
+    private void initMeasureList() {
+        this.measureList.add("гр");
+        this.measureList.add("шт");
+        this.measureList.add("ст.л");
+        this.measureList.add("ч.л.");
+        this.measureList.add("щ.");
+        this.measureList.add("по вкусу");
+    }
+
     public void handleSaveCuisine() {
         Cuisine cuisine = new Cuisine();
         cuisine.setName(this.getCuisineName());
@@ -77,7 +99,7 @@ public class DishCreation {
         dish.setProducts(this.getProductsFromStr(this.getProducts()));
     }
     public List<Product> getProductsFromStr(String productsStr){
-     List<Product> products = new ArrayList<Product>();
+        List<Product> products = new ArrayList<Product>();
         String[] prodStrings = productsStr.split("(\\s*[А-Яа-я]+\\s*)+[0-9]*\\s*[А-Яа-я]*\\s*");
         for (int i=0;i<prodStrings.length;i++){
             Product product = new Product();
@@ -139,7 +161,7 @@ public class DishCreation {
     }
 
     public void handleFileUpload(FileUploadEvent event) {
-        this.ImgFile.setImgFile(event.getFile());
+        this.ImgFile.setImgFile(0,event.getFile());
     }
 
     public String getVitaminName() {
@@ -193,6 +215,11 @@ public class DishCreation {
     public List<Cuisine> getCuisines() {
         return foodDAO.getCuisines();
     }
+    public List<String> getMeasureList(){
+        return this.measureList;
+    }
+
+
 
     public void setCuisines(List<Cuisine> cuisines) {
         this.cuisines = cuisines;
@@ -220,5 +247,26 @@ public class DishCreation {
 
     public void setProducts(String products) {
         this.products = products;
+    }
+
+    public String getSelectedMeasure() {
+        return selectedMeasure;
+    }
+
+    public void setMeasureList(List<String> measureList) {
+        this.measureList = measureList;
+    }
+
+    public void setSelectedMeasure(String selectedMeasure) {
+        this.selectedMeasure = selectedMeasure;
+
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
     }
 }

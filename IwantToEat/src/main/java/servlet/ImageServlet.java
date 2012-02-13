@@ -22,13 +22,14 @@ public class ImageServlet extends HttpServlet{
     private ImageLocal Img;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (Img.getImgFile() != null){
+        if (Img.getImgFile(Integer.parseInt(request.getParameter("index"))) != null){
         response.setContentType("image/png");
         OutputStream os = response.getOutputStream();
-        byte[] img = Img.getImgFile().getContents();
+        byte[] img = Img.getImgFile(Integer.parseInt(request.getParameter("index"))).getContents();
         os.write(img);
         os.flush();
         }
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

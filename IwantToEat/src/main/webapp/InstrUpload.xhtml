@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="template/my_template.xhtml">
+    <ui:define name="page_content">
+        <h:form enctype="multipart/form-data">
+            <p:commandButton  value="Basic" onclick="dlg1.show();" type="button" />
+            <p:dialog id="basicDialog" header="Basic Dialog" widgetVar="dlg1">
+            <p:fileUpload fileUploadListener="#{instrUploadBean.handleFileUpload}"
+                          mode="advanced"
+                          update="messages"
+                          multiple="true"
+                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+            <p:growl id="messages" showDetail="true"/>
+            <p:commandButton value="Save changes" onclick="dlg1.close()" actionListener="#{instrUploadBean.saveImages}"/>
+            </p:dialog>
+            <p:dataTable id="basic" var="image" value="#{instrUploadBean.images}">
+                <p:column id="imgDescription">
+                    <f:facet name="header">
+                        Описание
+                    </f:facet>
+                    <p:inputText value="#{image.description}" />
+                </p:column >
+                <p:column id="imgSrc">
+                    <f:facet name="header">
+                        Картинка
+                    </f:facet>
+                    <p:graphicImage value="#{image.src}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
