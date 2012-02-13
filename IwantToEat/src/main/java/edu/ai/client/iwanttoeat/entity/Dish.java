@@ -7,17 +7,7 @@ package edu.ai.client.iwanttoeat.entity;
 import edu.ai.client.iwanttoeat.entity.Cuisine;
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.TableGenerator;
+import javax.persistence.*;
 
 /**
  *
@@ -44,6 +34,8 @@ public class Dish implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    @OneToMany(mappedBy = "dish")
+    private Collection<Image> images;
 
     @ManyToMany
     @JoinTable(name = "DESEASE_DISH",
@@ -114,5 +106,13 @@ public class Dish implements Serializable {
 
     public void setProducts(Collection<Product> products) {
         this.products = products;
+    }
+
+    public Collection<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(Collection<Image> images) {
+        this.images = images;
     }
 }

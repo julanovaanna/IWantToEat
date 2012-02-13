@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class InstrUploadBean {
         FacesContext.getCurrentInstance().addMessage(null, msg);
         ImageBean imageBean = new ImageBean();
         imageBean.setUploadedFile(event.getFile());
+
         imageBean.setDescription("пусто");
         images.add(imageBean);
         imageLocal.setImgFile(i,event.getFile());
