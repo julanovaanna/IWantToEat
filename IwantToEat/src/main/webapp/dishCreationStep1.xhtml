@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="template/my_template.xhtml">
+    <ui:define name="page_content">
+        <h:form enctype="multipart/form-data">
+            <h3>Рецептик не дадите?</h3>
+
+            <h2>(Шаг 1 из 3)</h2>
+
+            <div>
+
+                <h:outputLabel value="Название блюда"/>
+                <br/>
+                <p:inputText value="#{dishCreation.dishName}"/>
+                <div>
+                Пожалуйста! Указывайте ингридиенты в указанном формате:
+                </div>
+
+                <div>
+                    Название (пояснение) - количество мера измерения
+                </div>
+                <div>
+                    Например: Рис (пропаренный) - 200 гр.
+                </div>
+                <div>
+                    Это поможет нам сделать поиск по сайту наиболее эффективным!Спасибо!
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div>
+                        <h:outputLabel value="Ингридиенты"/>
+                        <br/>
+                        <p:inputTextarea value="#{dishCreation.ingridients}"/>
+                    </div>
+                    <div>
+                        <h:outputLabel value="Описание процесса приготовления"/>
+                        <br/>
+                        <p:inputTextarea value="#{dishCreation.dishDescription}"/>
+                    </div>
+                </div>
+                <div>
+                    <p:graphicImage value="#{dishCreation.mainImgSrc}" id="mainImg"/>
+                    <br/>
+                    <p:messages showDetail="true"/>
+
+                    <p:fileUpload value="#{dishCreation.mainImgFile}" mode="simple" update="mainImg"/>
+
+                    <p:commandButton value="Submit" ajax="false"
+                                     actionListener="#{dishCreation.upload}"/>
+                </div>
+            </div>
+            <h:commandButton  value="Далее" action="#{dishCreation.next1}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
