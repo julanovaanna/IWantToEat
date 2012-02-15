@@ -96,6 +96,8 @@ strong, b {
 }
 body{
     background-color: #ffff99;
+    font-family: Arial, Sans-Serif;
+
     /*overflow: hidden;*/
 }
 .top{

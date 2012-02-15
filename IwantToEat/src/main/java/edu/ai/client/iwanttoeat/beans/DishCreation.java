@@ -149,7 +149,7 @@ public class DishCreation {
 
     private Collection<Product> getProductsFromIngrid() {
         List<Product> products = new ArrayList<Product>();
-        String[] strings = this.getIngridients().split("/n");
+        String[] strings = this.getIngridients().split("\r\n");
         for (int i=0;i<strings.length;i++){
             String prodName = strings[i].split("^([а-я,А-Я]+ *)+\\(*\\-*")[0];
             Product productFromDB = foodDAO.isProductExist(prodName.substring(0,prodName.length()-2).trim());
