@@ -8,17 +8,29 @@
         template="template/my_template.xhtml">
     <ui:define name="page_content">
         <h:form enctype="multipart/form-data">
-            <p:commandButton  value="Basic" onclick="dlg1.show();" type="button" />
-            <p:dialog id="basicDialog" header="Basic Dialog" widgetVar="dlg1">
-            <p:fileUpload fileUploadListener="#{instrUploadBean.handleFileUpload}"
+            <h3>Рецептик не дадите?</h3>
+
+            <h2>(Шаг 1 из 3)</h2>
+            <div>
+               Если это возможно, загрузить пожалуйста пошаговую инструкцию к приготовлению
+            </div>
+            <p:commandButton  value="Загрузить фото" onclick="dlg1.show();" type="button" />
+            <p:dialog id="basicDialog" header="Загрузка фотографий" widgetVar="dlg1">
+            <p:fileUpload fileUploadListener="#{dishCreation.handleFileUpload}"
                           mode="advanced"
-                          update="messages"
+                          update="instrTable messages"
                           multiple="true"
                           allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
             <p:growl id="messages" showDetail="true"/>
-            <p:commandButton value="Save changes" onclick="dlg1.close()" actionListener="#{instrUploadBean.saveImages}"/>
+            <p:commandButton value="Save changes" onclick="dlg1.close()" actionListener="#{dishCreation.saveImages}"/>
             </p:dialog>
-            <p:dataTable id="basic" var="image" value="#{instrUploadBean.images}">
+            <p:dataTable id="instrTable" var="image" value="#{dishCreation.images}">
+                <p:column id="imgMode">
+                    <f:facet name="header">
+                        Очередность
+                    </f:facet>
+                    <p:inputText value="#{image.mode}" />
+                </p:column >
                 <p:column id="imgDescription">
                     <f:facet name="header">
                         Описание
@@ -32,6 +44,7 @@
                     <p:graphicImage value="#{image.src}" />
                 </p:column>
             </p:dataTable>
+            <h:commandButton  value="Готово" action="#{dishCreation.persistDish}"/>
         </h:form>
     </ui:define>
 </ui:composition>

@@ -96,7 +96,7 @@ strong, b {
 }
 body{
     background-color: #ffff99;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .top{
     background: url("../my_images/top.png")repeat-x;
@@ -151,10 +151,10 @@ body{
 .bottom{
     background-color: #C96;
     height: 50px;
-    width: 100%;
-    bottom: 0;
-    z-index: 2;
-    position: absolute;
+    /*width: 100%;*/
+    /*bottom: 0;*/
+    /*z-index: 2;*/
+    /*position: absolute;*/
 }
 .povar{
     background: url("../my_images/povar.png");

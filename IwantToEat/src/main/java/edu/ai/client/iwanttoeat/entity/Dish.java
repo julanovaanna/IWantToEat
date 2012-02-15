@@ -24,6 +24,8 @@ public class Dish implements Serializable {
 
     @Column(name = "DIFFICULTY")
     private int difficulty;
+    
+    private String ingridients;
 
     private String name;
 
@@ -114,5 +116,13 @@ public class Dish implements Serializable {
 
     public void setImages(Collection<Image> images) {
         this.images = images;
+    }
+
+    public String getIngridients() {
+        return ingridients;
+    }
+
+    public void setIngridients(String ingridients) {
+        this.ingridients = ingridients;
     }
 }

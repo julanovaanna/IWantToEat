@@ -16,5 +16,7 @@ import java.io.File;
 public interface ImageLocal {
     public UploadedFile getImgFile(int index);
     public void setImgFile(int index, UploadedFile file);
+    public UploadedFile getMainImgFile();
+    public void setMainImgFile(UploadedFile uploadedFile);
 
 }

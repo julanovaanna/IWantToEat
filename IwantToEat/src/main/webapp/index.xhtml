@@ -8,7 +8,7 @@
         template="template/my_template.xhtml">
     <ui:define name="page_content">
         <h:form enctype="multipart/form-data">
-
+            <p:inputText value="#{dishCreation.cuisineName}"/>
             <p:imageSwitch effect="fade">
                 <ui:repeat value="#{imageSwitchBean.images}" var="image">
                     <p:panel>

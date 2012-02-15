@@ -22,6 +22,16 @@ public class ImageServlet extends HttpServlet{
     private ImageLocal Img;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (request.getParameter("main")!=null){
+        if (Integer.parseInt(request.getParameter("main"))==1){
+            response.setContentType("image/png");
+            OutputStream os = response.getOutputStream();
+            byte[] img = Img.getMainImgFile().getContents();
+            os.write(img);
+            os.flush();
+        }
+        }
+
         if (Img.getImgFile(Integer.parseInt(request.getParameter("index"))) != null){
         response.setContentType("image/png");
         OutputStream os = response.getOutputStream();

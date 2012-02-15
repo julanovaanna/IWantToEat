@@ -1,9 +1,6 @@
 package edu.ai.client.iwanttoeat;
 
-import edu.ai.client.iwanttoeat.entity.Cuisine;
-import edu.ai.client.iwanttoeat.entity.Disease;
-import edu.ai.client.iwanttoeat.entity.Product;
-import edu.ai.client.iwanttoeat.entity.Vitamin;
+import edu.ai.client.iwanttoeat.entity.*;
 import org.apache.commons.io.filefilter.FalseFileFilter;
 import sun.font.TrueTypeFont;
 
@@ -30,6 +27,14 @@ public class FoodDAO {
         em.persist(cuisine);
     }
     @TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
+    public void persistDish(Dish dish){
+        em.persist(dish);
+    }
+    @TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
+    public  void persistImage(Image image){
+        em.persist(image);
+    }
+    @TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
      public void persistVitamin(Vitamin vitamin){
         em.persist(vitamin);
     }
@@ -43,6 +48,7 @@ public class FoodDAO {
     }
     public List<Cuisine> getCuisines(){
         List<Cuisine> cuisines = (List<Cuisine>)em.createQuery("from Cuisine").getResultList();
+
         return cuisines;
     }
     public List<Disease> getDiseases(){
@@ -58,9 +64,9 @@ public class FoodDAO {
         List<Product> products = (List<Product>)em.createQuery("from Product p where upper(p.name) like upper(:prodName)").setParameter("prodName",beginning).getResultList();
         return products;
     }
-    public boolean isProductExist(String productName){
+    public Product isProductExist(String productName){
 
         Product product = (Product)em.createQuery("from Product p where upper(p.name)like upper(:prodName)").setParameter("prodName", productName).getSingleResult();
-        return product!=null;
+        return product;
     }
 }

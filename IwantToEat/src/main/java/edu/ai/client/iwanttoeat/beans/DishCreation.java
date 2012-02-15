@@ -4,13 +4,17 @@ import edu.ai.client.iwanttoeat.FoodDAO;
 
 import edu.ai.client.iwanttoeat.entity.*;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import servlet.ImageLocal;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -24,176 +28,61 @@ import java.util.List;
 @SessionScoped
 public class DishCreation {
     @EJB
-    private ImageLocal ImgFile;
+    private ImageLocal im;
     @EJB
     private FoodDAO foodDAO;
-    private String dishName = "Пожалуйста, укажите название блюда...";
+    private String dishName;
+    private String ingridients;
     private String dishDescription;
-    private Cuisine selectedCuisine;
-    private List<Cuisine> cuisines;
-    private String cuisineName;
-    private String cuisineDescription;
-    private List<Disease> selectedDiseases;
-    private List<Disease> diseases;
-    private List<Vitamin> selectedVitamins;
-    private List<Vitamin> vitamins;
-    private String vitaminName;
-    private String vitaminDescription;
-    private String diseaseName;
-    private String diagnosis;
-    private String products;
-    private String selectedMeasure;
-    private List<String> measureList;
-    private String product;
+    private String mainImgSrc;
+    private UploadedFile mainImgFile;
+    private List<ImageBean> images;
+    int i=0;
+
 
     public DishCreation() {
-        cuisines = new ArrayList<Cuisine>();
-        selectedDiseases = new ArrayList<Disease>();
-        selectedVitamins = new ArrayList<Vitamin>();
-        diseases = new ArrayList<Disease>();
-        vitamins = new ArrayList<Vitamin>();
-        measureList = new ArrayList<String>();
-        this.initMeasureList();
-
+        this.setMainImgSrc("/my_images/authors.png");
+        images = new ArrayList<ImageBean>();
     }
-    public List<String> complete(String query) {
-        List<String> result = new ArrayList<String>();
-        List<Product> productList = foodDAO.getProducts(query);
-        for (Product prod: productList){
-            result.add(prod.getName());
-        }
-        return result;
+    public void upload() {
+        FacesMessage msg = new FacesMessage("Файл "+mainImgFile.getFileName() + " успешно загружен.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    private void initMeasureList() {
-        this.measureList.add("гр");
-        this.measureList.add("шт");
-        this.measureList.add("ст.л");
-        this.measureList.add("ч.л.");
-        this.measureList.add("щ.");
-        this.measureList.add("по вкусу");
-    }
-
-    public void handleSaveCuisine() {
-        Cuisine cuisine = new Cuisine();
-        cuisine.setName(this.getCuisineName());
-        cuisine.setDescription(this.getCuisineDescription());
-        foodDAO.persistCuisine(cuisine);
-    }
-    public void handleSaveVitamin() {
-        Vitamin vitamin = new Vitamin();
-        vitamin.setName(this.getVitaminName());
-        vitamin.setDescription(this.getVitaminDescription());
-        foodDAO.persistVitamin(vitamin);
-    }
-    public void handleSaveDisease() {
-        Disease disease = new Disease();
-        disease.setName(this.getDiseaseName());
-        disease.setDiagnosis(this.getDiagnosis());
-        foodDAO.persistDisease(disease);
-    }
-    public void submitDish(ActionEvent event){
-        Dish dish = new Dish();
-        dish.setName(this.getDiseaseName());
-        dish.setDescription(this.getDishDescription());
-        dish.setGoodFor(this.getSelectedDiseases());
-        dish.setProducts(this.getProductsFromStr(this.getProducts()));
-    }
-    public List<Product> getProductsFromStr(String productsStr){
-        List<Product> products = new ArrayList<Product>();
-        String[] prodStrings = productsStr.split("(\\s*[А-Яа-я]+\\s*)+[0-9]*\\s*[А-Яа-я]*\\s*");
-        for (int i=0;i<prodStrings.length;i++){
-            Product product = new Product();
-            String prodName = (prodStrings[i].split("[^/0-9]+"))[0];
-            if (!foodDAO.isProductExist(prodName)){
-
-            }
-            product.setName((prodStrings[i].split("[^/0-9]+"))[0]);
-
-        }
-        return products;
-    }
-    public List<Vitamin> getSelectedVitamins() {
-        return selectedVitamins;
-    }
-
-    public void setSelectedVitamins(List<Vitamin> selectedVitamins) {
-        this.selectedVitamins = selectedVitamins;
-    }
-
-    public List<Vitamin> getVitamins() {
-        return foodDAO.getVitamins();
-    }
-
-    public void setVitamins(List<Vitamin> vitamins) {
-        this.vitamins = vitamins;
-    }
-
-    public List<Disease> getSelectedDiseases() {
-        return selectedDiseases;
-    }
-
-    public String getDiseaseName() {
-        return diseaseName;
-    }
-
-    public void setDiseaseName(String diseaseName) {
-        this.diseaseName = diseaseName;
-    }
-
-    public String getDiagnosis() {
-        return diagnosis;
-    }
-
-    public void setDiagnosis(String diagnosis) {
-        this.diagnosis = diagnosis;
-    }
-
-    public void setSelectedDiseases(List<Disease> selectedDiseases) {
-        this.selectedDiseases = selectedDiseases;
-    }
-
-    public List<Disease> getDiseases() {
-        return foodDAO.getDiseases();
-    }
-
-    public void setDiseases(List<Disease> diseases) {
-        this.diseases = diseases;
-    }
-
     public void handleFileUpload(FileUploadEvent event) {
-        this.ImgFile.setImgFile(0,event.getFile());
-    }
+        FacesMessage msg = new FacesMessage("Файл", event.getFile().getFileName() + " успешно загружен.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
 
-    public String getVitaminName() {
-        return vitaminName;
-    }
+        ImageBean imageBean = new ImageBean();
+        imageBean.setUploadedFile(event.getFile());
+        imageBean.setDescription("пусто");
+        imageBean.setSrc(Integer.toString(i));
+        images.add(imageBean);
 
-    public void setVitaminName(String vitaminName) {
-        this.vitaminName = vitaminName;
+        im.setImgFile(i,event.getFile());
+        i++;
     }
-
-    public String getVitaminDescription() {
-        return vitaminDescription;
+    public String next1(){
+        return "dishCreationStep2";
     }
+    public void saveImages(){
+        i =i+1;
+        i=i-1;
 
-    public void setVitaminDescription(String vitaminDescription) {
-        this.vitaminDescription = vitaminDescription;
     }
-
-    public ImageLocal getImgFile() {
-        return ImgFile;
-    }
-
-    public void setImgFile(ImageLocal imgFile) {
-        ImgFile = imgFile;
-    }
-
     public String getDishName() {
         return dishName;
     }
 
     public void setDishName(String dishName) {
         this.dishName = dishName;
+    }
+
+    public String getIngridients() {
+        return ingridients;
+    }
+
+    public void setIngridients(String ingridients) {
+        this.ingridients = ingridients;
     }
 
     public String getDishDescription() {
@@ -204,69 +93,80 @@ public class DishCreation {
         this.dishDescription = dishDescription;
     }
 
-    public Cuisine getSelectedCuisine() {
-        return selectedCuisine;
+    public String getMainImgSrc() {
+        return mainImgSrc;
     }
 
-    public void setSelectedCuisine(Cuisine selectedCuisine) {
-        this.selectedCuisine = selectedCuisine;
+    public void setMainImgSrc(String mainImgSrc) {
+        this.mainImgSrc = mainImgSrc;
     }
 
-    public List<Cuisine> getCuisines() {
-        return foodDAO.getCuisines();
-    }
-    public List<String> getMeasureList(){
-        return this.measureList;
+    public UploadedFile getMainImgFile() {
+        return mainImgFile;
     }
 
-
-
-    public void setCuisines(List<Cuisine> cuisines) {
-        this.cuisines = cuisines;
+    public List<ImageBean> getImages() {
+        return images;
     }
 
-    public String getCuisineName() {
-        return cuisineName;
+    public void setImages(List<ImageBean> images) {
+        this.images = images;
     }
 
-    public void setCuisineName(String cuisineName) {
-        this.cuisineName = cuisineName;
+    public int getI() {
+        return i;
     }
 
-    public String getCuisineDescription() {
-        return cuisineDescription;
+    public void setI(int i) {
+        this.i = i;
+    }
+    public void persistDish(){
+        Dish dish = new Dish();
+        dish.setName(this.getDishName());
+        dish.setDescription(this.getDishDescription());
+        dish.setIngridients(this.getIngridients());
+        dish.setProducts(this.getProductsFromIngrid());
+        dish.setImages(this.getImagesFromInstruction());
+        foodDAO.persistDish(dish);
+
     }
 
-    public void setCuisineDescription(String cuisineDescription) {
-        this.cuisineDescription = cuisineDescription;
+    private Collection<Image> getImagesFromInstruction() {
+        List<Image> imageList = new ArrayList<Image>();
+        for(ImageBean imageBean: images){
+            Image image = new Image();
+            image.setMode(imageBean.getMode());
+            image.setContent(imageBean.getUploadedFile().getContents());
+            image.setDescription(imageBean.getDescription());
+            imageList.add(image);
+        }
+        Image imMain = new Image();
+        imMain.setMode("main");
+        imMain.setContent(getMainImgFile().getContents());
+        imageList.add(imMain);
+        return imageList;
     }
 
-    public String getProducts() {
+    private Collection<Product> getProductsFromIngrid() {
+        List<Product> products = new ArrayList<Product>();
+        String[] strings = this.getIngridients().split("/n");
+        for (int i=0;i<strings.length;i++){
+            String prodName = strings[i].split("^([а-я,А-Я]+ *)+\\(*\\-*")[0];
+            Product productFromDB = foodDAO.isProductExist(prodName.substring(0,prodName.length()-2).trim());
+            if(productFromDB==null){
+                Product product = new Product();
+                product.setName(prodName.substring(0,prodName.length()-2).trim());
+                products.add(product);
+            }else {
+                products.add(productFromDB);
+            }
+        }
         return products;
     }
 
-    public void setProducts(String products) {
-        this.products = products;
-    }
-
-    public String getSelectedMeasure() {
-        return selectedMeasure;
-    }
-
-    public void setMeasureList(List<String> measureList) {
-        this.measureList = measureList;
-    }
-
-    public void setSelectedMeasure(String selectedMeasure) {
-        this.selectedMeasure = selectedMeasure;
-
-    }
-
-    public String getProduct() {
-        return product;
-    }
-
-    public void setProduct(String product) {
-        this.product = product;
+    public void setMainImgFile(UploadedFile mainImgFile) {
+        this.mainImgFile = mainImgFile;
+        im.setMainImgFile(mainImgFile);
+        mainImgSrc="http://localhost:8080/IwantToEat-1.0-SNAPSHOT/ImageServlet?main=1";
     }
 }

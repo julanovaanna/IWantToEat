@@ -18,7 +18,7 @@ import java.util.List;
 @Stateless
 @Local(ImageLocal.class)
 public class ImageBean implements ImageLocal{
-    private UploadedFile imgFile;
+    private UploadedFile mainImgFile;
     private List<UploadedFile> imgFiles;
 
     public ImageBean() {
@@ -34,5 +34,15 @@ public class ImageBean implements ImageLocal{
     @Override
     public void setImgFile(int index, UploadedFile file) {
         this.imgFiles.add(index,file);
+    }
+
+    @Override
+    public UploadedFile getMainImgFile() {
+        return this.mainImgFile;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setMainImgFile(UploadedFile uploadedFile) {
+        this.mainImgFile = uploadedFile;
     }
 }
